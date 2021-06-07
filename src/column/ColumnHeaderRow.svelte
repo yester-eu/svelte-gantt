@@ -35,8 +35,19 @@
         const offset = header.offset || 1;
 
         for(let i = 0; i < columnCount; i++){
+            const offset = header.offset || 1;
+            let cutPeriodDiff = 0;
+            if(i === 0){
+                cutPeriodDiff = $from.clone().diff(headerTime.clone());
+            }
+            else if(i === columnCount-1){
+                cutPeriodDiff = headerTime.clone().diff($to.clone());
+            }
+            const duration = headerTime.clone().add(offset,header.unit).diff(headerTime.clone())-cutPeriodDiff;
+            const ratio = duration / baseDuration;
+            const thisWidth = baseWidth * ratio; 
             headers.push({
-                width: Math.min(columnWidth, $width), 
+                width: Math.min(thisWidth, $width), 
                 label: headerTime.format(header.format),
                 from: headerTime.clone(),
                 to: headerTime.clone().add(offset, header.unit),

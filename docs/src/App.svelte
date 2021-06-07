@@ -3,8 +3,8 @@
     import { onMount } from 'svelte';
     import { time } from './utils';
 
-    const currentStart = time('06:00');
-    const currentEnd = time('18:00');
+    const currentStart =  moment('2021-01-01');
+    const currentEnd =  moment('2021-12-31');
 
     const colors = ['blue', 'green', 'orange']
 
@@ -16,12 +16,21 @@
         label: 'Lunch'
     }];
 
+    const configs = {
+  day: { headers: [{ unit: 'year', format: 'YYYY' }, { unit: 'month', format: 'MMMM' }, { unit: 'day', format: 'DD' }], minWidth: 7300, fitWidth: false },
+  week: { headers: [{ unit: 'year', format: 'YYYY' }, { unit: 'month', format: 'MMMM' }, { unit: 'week', format: 'WW' }], minWidth: 7300, fitWidth: false },
+  year: { headers: [{ unit: 'year', format: 'YYYY' }, { unit: 'month', format: 'MMMM' }, { unit: 'week', format: 'WW' }], minWidth: 1600, fitWidth: true },
+};
+
     const options = {
         rows: [],
         tasks: [],
         timeRanges,
-        headers: [{ unit: 'day', format: 'MMMM Do' }, { unit: 'hour', format: 'H:mm' }],
-        fitWidth: true,
+        headers:  [{ unit: 'year', format: 'YYYY' }, { unit: 'month', format: 'MMMM' }, { unit: 'day', format: 'DD' }],//{ unit: 'day', format: 'MMMM Do' }, { unit: 'hour', format: 'H:mm' }],
+        fitWidth: false,
+        minWidth:7300,
+        columnUnit: 'day',
+            columnOffset: 1,
         from: currentStart,
         to: currentEnd,
         tableHeaders: [{ title: 'Label', property: 'label', width: 140, type: 'tree' }],
@@ -70,13 +79,13 @@
     function onSetDayView() {
         console.log('day view set');
         gantt.$set({
-            fitWidth: true,
-            columnUnit: 'minute',
-            columnOffset: 15,
+            fitWidth: false,
+            columnUnit: 'day',
+            columnOffset: 1,
             from: currentStart,
             to: currentEnd,
             minWidth: 1000,
-            headers: [{ unit: 'day', format: 'DD.MM.YYYY' }, { unit: 'hour', format: 'HH' }]
+            headers: configs.day.headers//[{ unit: 'day', format: 'DD.MM.YYYY' }]
         });
     };
 
@@ -84,12 +93,10 @@
         console.log('week view set');
         gantt.$set({
             fitWidth: false,
-            columnUnit: 'hour',
+            columnUnit: 'week',
             columnOffset: 1,
-            from: currentStart.clone().startOf('week'),
-            to: currentStart.clone().endOf('week'),
             minWidth: 5000,
-            headers: [{ unit: 'month', format: 'MMMM YYYY', sticky: true }, { unit: 'day', format: 'ddd DD', sticky: true }]
+            headers:configs.week.headers
         });
     };
 

@@ -10,6 +10,7 @@ export interface TaskModel {
     amountDone?: number;
     classes?: string | string[];
     label?: string;
+    color?: string;
     html?: string;
     showButton?: boolean;
     buttonClasses?: string | string[];
@@ -46,6 +47,8 @@ export class TaskFactory {
         model.amountDone = model.amountDone || 0;
         // css classes
         model.classes = model.classes || '';
+        // task color
+        model.color = model.color || null;
         // datetime task starts on, currently moment-js object
         model.from = model.from || null;
         // datetime task ends on, currently moment-js object

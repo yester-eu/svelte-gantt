@@ -8,6 +8,7 @@ export interface TaskModel {
     amountDone?: number;
     classes?: string | string[];
     label?: string;
+    color?: string;
     html?: string;
     showButton?: boolean;
     buttonClasses?: string | string[];
@@ -47,6 +48,7 @@ export declare function reflectTask(task: SvelteTask, row: SvelteRow, options: {
         amountDone?: number;
         classes?: string | string[];
         label?: string;
+        color?: string;
         html?: string;
         showButton?: boolean;
         buttonClasses?: string | string[];

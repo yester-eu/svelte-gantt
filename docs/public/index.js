@@ -1,9 +1,9 @@
-var app = (function (moment) {
+var app = (function (moment$1) {
     'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-    var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment);
+    var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment$1);
 
     function noop() { }
     function add_location(element, file, line, column, char) {
@@ -3528,7 +3528,7 @@ var app = (function (moment) {
     	return child_ctx;
     }
 
-    // (52:4) {#each _headers as _header}
+    // (56:4) {#each _headers as _header}
     function create_each_block(ctx) {
     	let div1;
     	let div0;
@@ -3549,11 +3549,11 @@ var app = (function (moment) {
     			t0 = text$1(t0_value);
     			t1 = space$1();
     			attr_dev$1(div0, "class", "column-header-cell-label svelte-1sbstdn");
-    			add_location$1(div0, file$6, 53, 12, 1751);
+    			add_location$1(div0, file$6, 57, 12, 1987);
     			attr_dev$1(div1, "class", "column-header-cell svelte-1sbstdn");
     			set_style(div1, "width", /*_header*/ ctx[13].width + "px");
     			toggle_class(div1, "sticky", /*header*/ ctx[0].sticky);
-    			add_location$1(div1, file$6, 52, 8, 1540);
+    			add_location$1(div1, file$6, 56, 8, 1776);
     		},
     		m: function mount(target, anchor) {
     			insert_dev$1(target, div1, anchor);
@@ -3589,7 +3589,7 @@ var app = (function (moment) {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(52:4) {#each _headers as _header}",
+    		source: "(56:4) {#each _headers as _header}",
     		ctx
     	});
 
@@ -3615,7 +3615,7 @@ var app = (function (moment) {
     			}
 
     			attr_dev$1(div, "class", "column-header-row svelte-1sbstdn");
-    			add_location$1(div, file$6, 50, 0, 1466);
+    			add_location$1(div, file$6, 54, 0, 1702);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -3713,7 +3713,7 @@ var app = (function (moment) {
     		createEventDispatcher,
     		getContext,
     		dispatch,
-    		momentDuration: moment.duration,
+    		momentDuration: moment$1.duration,
     		from,
     		to,
     		width,
@@ -3744,7 +3744,7 @@ var app = (function (moment) {
     		if ($$self.$$.dirty & /*header, baseDuration, baseWidth*/ 385) {
     			 {
     				const offset = header.offset || 1;
-    				const duration$1 = moment.duration(offset, header.unit).asMilliseconds();
+    				const duration$1 = moment$1.duration(offset, header.unit).asMilliseconds();
     				const ratio = duration$1 / baseDuration;
     				$$invalidate(5, columnWidth = baseWidth * ratio);
     			}
@@ -3761,15 +3761,20 @@ var app = (function (moment) {
     			}
     		}
 
-    		if ($$self.$$.dirty & /*$from, header, columnCount, columnWidth, $width*/ 1633) {
+    		if ($$self.$$.dirty & /*$from, header, columnCount, baseDuration, baseWidth, $width*/ 1985) {
     			 {
     				const headers = [];
     				let headerTime = $from.clone().startOf(header.unit);
     				const offset = header.offset || 1;
 
     				for (let i = 0; i < columnCount; i++) {
+    					const offset = header.offset || 1;
+    					const duration = headerTime.clone().add(offset, header.unit).diff(headerTime.clone());
+    					const ratio = duration / baseDuration;
+    					const thisWidth = baseWidth * ratio;
+
     					headers.push({
-    						width: Math.min(columnWidth, $width),
+    						width: Math.min(thisWidth, $width),
     						label: headerTime.format(header.format),
     						from: headerTime.clone(),
     						to: headerTime.clone().add(offset, header.unit),
@@ -4154,7 +4159,7 @@ var app = (function (moment) {
 
     	$$self.$capture_state = () => ({
     		getContext,
-    		momentDuration: moment.duration,
+    		momentDuration: moment$1.duration,
     		getPositionByDate,
     		ColumnHeaderRow,
     		headers,
@@ -4192,7 +4197,7 @@ var app = (function (moment) {
 
     				[...headers, { unit: columnUnit, offset: columnOffset }].forEach(header => {
     					const offset = header.offset || 1;
-    					const duration$1 = moment.duration(offset, header.unit).asMilliseconds();
+    					const duration$1 = moment$1.duration(offset, header.unit).asMilliseconds();
 
     					if (duration$1 < minDuration || minDuration === null) {
     						minDuration = duration$1;
@@ -4213,7 +4218,7 @@ var app = (function (moment) {
 
     		if ($$self.$$.dirty & /*minHeader*/ 256) {
     			 {
-    				$$invalidate(2, baseHeaderDuration = moment.duration(minHeader.offset || 1, minHeader.unit).asMilliseconds());
+    				$$invalidate(2, baseHeaderDuration = moment$1.duration(minHeader.offset || 1, minHeader.unit).asMilliseconds());
     			}
     		}
     	};
@@ -10346,7 +10351,7 @@ var app = (function (moment) {
     const { console: console_1$3 } = globals;
     const file$g = "docs\\src\\App.svelte";
 
-    // (270:4) {#if showCode}
+    // (277:4) {#if showCode}
     function create_if_block$4(ctx) {
     	let pre;
     	let t;
@@ -10356,7 +10361,7 @@ var app = (function (moment) {
     			pre = element("pre");
     			t = text(/*code*/ ctx[0]);
     			attr_dev(pre, "class", "code-float svelte-186nbj");
-    			add_location(pre, file$g, 270, 4, 7959);
+    			add_location(pre, file$g, 277, 4, 8453);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, pre, anchor);
@@ -10374,7 +10379,7 @@ var app = (function (moment) {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(270:4) {#if showCode}",
+    		source: "(277:4) {#if showCode}",
     		ctx
     	});
 
@@ -10440,51 +10445,51 @@ var app = (function (moment) {
     			if (if_block) if_block.c();
     			attr_dev(a, "href", "https://github.com/ANovokmet/svelte-gantt");
     			attr_dev(a, "class", "svelte-186nbj");
-    			add_location(a, file$g, 249, 8, 6991);
+    			add_location(a, file$g, 256, 8, 7485);
     			attr_dev(div0, "class", "header-title svelte-186nbj");
-    			add_location(div0, file$g, 248, 4, 6955);
+    			add_location(div0, file$g, 255, 4, 7449);
     			attr_dev(input0, "type", "button");
     			input0.value = "Tree";
     			attr_dev(input0, "class", "svelte-186nbj");
-    			add_location(input0, file$g, 253, 8, 7118);
+    			add_location(input0, file$g, 260, 8, 7612);
     			attr_dev(input1, "type", "button");
     			input1.value = "Dependencies";
     			attr_dev(input1, "class", "svelte-186nbj");
-    			add_location(input1, file$g, 254, 8, 7197);
+    			add_location(input1, file$g, 261, 8, 7691);
     			attr_dev(input2, "type", "button");
     			input2.value = "Large";
     			attr_dev(input2, "class", "svelte-186nbj");
-    			add_location(input2, file$g, 255, 8, 7293);
+    			add_location(input2, file$g, 262, 8, 7787);
     			attr_dev(input3, "type", "button");
     			input3.value = "<";
     			attr_dev(input3, "class", "svelte-186nbj");
-    			add_location(input3, file$g, 257, 8, 7377);
+    			add_location(input3, file$g, 264, 8, 7871);
     			attr_dev(input4, "type", "button");
     			input4.value = "Day view";
     			attr_dev(input4, "class", "svelte-186nbj");
-    			add_location(input4, file$g, 258, 8, 7447);
+    			add_location(input4, file$g, 265, 8, 7941);
     			attr_dev(input5, "type", "button");
     			input5.value = ">";
     			attr_dev(input5, "class", "svelte-186nbj");
-    			add_location(input5, file$g, 259, 8, 7520);
+    			add_location(input5, file$g, 266, 8, 8014);
     			attr_dev(input6, "type", "button");
     			input6.value = "Week view";
     			attr_dev(input6, "class", "svelte-186nbj");
-    			add_location(input6, file$g, 261, 8, 7588);
+    			add_location(input6, file$g, 268, 8, 8082);
     			attr_dev(input7, "id", "new-task");
     			attr_dev(input7, "type", "button");
     			input7.value = "Drag to gantt";
     			attr_dev(input7, "class", "svelte-186nbj");
-    			add_location(input7, file$g, 262, 8, 7663);
+    			add_location(input7, file$g, 269, 8, 8157);
     			attr_dev(div1, "class", "header-controls svelte-186nbj");
-    			add_location(div1, file$g, 251, 4, 7077);
+    			add_location(div1, file$g, 258, 4, 7571);
     			attr_dev(header, "class", "header svelte-186nbj");
-    			add_location(header, file$g, 247, 0, 6926);
+    			add_location(header, file$g, 254, 0, 7420);
     			attr_dev(div2, "id", "example-gantt");
     			attr_dev(div2, "class", "svelte-186nbj");
-    			add_location(div2, file$g, 267, 4, 7901);
+    			add_location(div2, file$g, 274, 4, 8395);
     			attr_dev(div3, "class", "container svelte-186nbj");
-    			add_location(div3, file$g, 266, 0, 7872);
+    			add_location(div3, file$g, 273, 0, 8366);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -10518,9 +10523,9 @@ var app = (function (moment) {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input0, "click", /*click_handler*/ ctx[17], false, false, false),
-    					listen_dev(input1, "click", /*click_handler_1*/ ctx[18], false, false, false),
-    					listen_dev(input2, "click", /*click_handler_2*/ ctx[19], false, false, false),
+    					listen_dev(input0, "click", /*click_handler*/ ctx[18], false, false, false),
+    					listen_dev(input1, "click", /*click_handler_1*/ ctx[19], false, false, false),
+    					listen_dev(input2, "click", /*click_handler_2*/ ctx[20], false, false, false),
     					listen_dev(input3, "click", /*onSetPreviousDay*/ ctx[4], false, false, false),
     					listen_dev(input4, "click", /*onSetDayView*/ ctx[1], false, false, false),
     					listen_dev(input5, "click", /*onSetNextDay*/ ctx[3], false, false, false),
@@ -10561,8 +10566,8 @@ var app = (function (moment) {
     }
 
     function instance$h($$self, $$props, $$invalidate) {
-    	const currentStart = time("06:00");
-    	const currentEnd = time("18:00");
+    	const currentStart = moment("2021-01-01");
+    	const currentEnd = moment("2021-12-31");
     	const colors = ["blue", "green", "orange"];
 
     	const timeRanges = [
@@ -10575,12 +10580,49 @@ var app = (function (moment) {
     		}
     	];
 
+    	const configs = {
+    		day: {
+    			headers: [
+    				{ unit: "year", format: "YYYY" },
+    				{ unit: "month", format: "MMMM" },
+    				{ unit: "day", format: "DD" }
+    			],
+    			minWidth: 7300,
+    			fitWidth: false
+    		},
+    		week: {
+    			headers: [
+    				{ unit: "year", format: "YYYY" },
+    				{ unit: "month", format: "MMMM" },
+    				{ unit: "week", format: "WW" }
+    			],
+    			minWidth: 7300,
+    			fitWidth: false
+    		},
+    		year: {
+    			headers: [
+    				{ unit: "year", format: "YYYY" },
+    				{ unit: "month", format: "MMMM" },
+    				{ unit: "week", format: "WW" }
+    			],
+    			minWidth: 1600,
+    			fitWidth: true
+    		}
+    	};
+
     	const options = {
     		rows: [],
     		tasks: [],
     		timeRanges,
-    		headers: [{ unit: "day", format: "MMMM Do" }, { unit: "hour", format: "H:mm" }],
-    		fitWidth: true,
+    		headers: [
+    			{ unit: "year", format: "YYYY" },
+    			{ unit: "month", format: "MMMM" },
+    			{ unit: "day", format: "DD" }
+    		], //{ unit: 'day', format: 'MMMM Do' }, { unit: 'hour', format: 'H:mm' }],
+    		fitWidth: false,
+    		minWidth: 7300,
+    		columnUnit: "day",
+    		columnOffset: 1,
     		from: currentStart,
     		to: currentEnd,
     		tableHeaders: [
@@ -10644,13 +10686,14 @@ var app = (function (moment) {
     		console.log("day view set");
 
     		gantt.$set({
-    			fitWidth: true,
-    			columnUnit: "minute",
-    			columnOffset: 15,
+    			fitWidth: false,
+    			columnUnit: "day",
+    			columnOffset: 1,
     			from: currentStart,
     			to: currentEnd,
     			minWidth: 1000,
-    			headers: [{ unit: "day", format: "DD.MM.YYYY" }, { unit: "hour", format: "HH" }]
+    			headers: configs.day.headers, //[{ unit: 'day', format: 'DD.MM.YYYY' }]
+    			
     		});
     	}
 
@@ -10661,23 +10704,10 @@ var app = (function (moment) {
 
     		gantt.$set({
     			fitWidth: false,
-    			columnUnit: "hour",
+    			columnUnit: "week",
     			columnOffset: 1,
-    			from: currentStart.clone().startOf("week"),
-    			to: currentStart.clone().endOf("week"),
     			minWidth: 5000,
-    			headers: [
-    				{
-    					unit: "month",
-    					format: "MMMM YYYY",
-    					sticky: true
-    				},
-    				{
-    					unit: "day",
-    					format: "ddd DD",
-    					sticky: true
-    				}
-    			]
+    			headers: configs.week.headers
     		});
     	}
 
@@ -10755,6 +10785,7 @@ var app = (function (moment) {
     		currentEnd,
     		colors,
     		timeRanges,
+    		configs,
     		options,
     		gantt,
     		onSetDayView,
@@ -10796,6 +10827,7 @@ var app = (function (moment) {
     		currentEnd,
     		colors,
     		timeRanges,
+    		configs,
     		options,
     		loadLarge,
     		loadDependencies,

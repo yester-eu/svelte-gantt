@@ -184,6 +184,7 @@
 
     let row;
     $: row = $rowStore.entities[model.resourceId];
+    const bgColor = model.color ? 'background-color:' + model.color : ''
 </script>
 
 <style>
@@ -302,7 +303,7 @@
   data-task-id="{model.id}"
   use:drag
   class="sg-task {model.classes}"
-  style="width:{_position.width}px; height:{height}px; transform: translate({_position.x}px, {_position.y}px);"
+  style="width:{_position.width}px; height:{height}px; transform: translate({_position.x}px, {_position.y}px); {bgColor};"
   class:moving={_dragging || _resizing}
   class:selected
   class:animating
