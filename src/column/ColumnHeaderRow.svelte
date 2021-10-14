@@ -6,7 +6,7 @@
     import { duration as momentDuration } from 'moment';
 
     const { from, to, width } = getContext('dimensions');
-    
+
     export let header;
     export let baseWidth;
     export let baseDuration;
@@ -45,10 +45,11 @@
             }
             const duration = headerTime.clone().add(offset,header.unit).diff(headerTime.clone())-cutPeriodDiff;
             const ratio = duration / baseDuration;
-            const thisWidth = baseWidth * ratio; 
+            const thisWidth = baseWidth * ratio;
+            const formattedHeaderLabel = headerTime.format(header.format);
             headers.push({
-                width: Math.min(thisWidth, $width), 
-                label: headerTime.format(header.format),
+                width: Math.min(thisWidth, $width),
+                label: header.translateFn ? header.translateFn(formattedHeaderLabel): formattedHeaderLabel ,
                 from: headerTime.clone(),
                 to: headerTime.clone().add(offset, header.unit),
                 unit: header.unit
@@ -84,12 +85,12 @@
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        font-size: 1em;    
+        font-size: 1em;
         font-size: 14px;
         font-weight: 300;
         transition: background 0.2s;
 
-        cursor: pointer;     
+        cursor: pointer;
         user-select: none;
 
         border-right: #efefef 1px solid;
